@@ -11,17 +11,21 @@ class Album extends Component {
 
 			this.state = {
 				album: album,
-				currentSong: album.songs[0],
-				isPlaying: false
+				currentSong: album.songs[null],
+				isPlaying: false,
+				isHovered: false
 			};
 
 			this.audioElement = document.createElement('audio');
 			this.audioElement.src = album.songs[0].audioSrc;
 		}
 
+		//pause logo - <i class="icon ion-md-pause"></i>
+		//play logo - <i class="icon ion-md-play"></i>
 			play() {
 				this.audioElement.play();
 				this.setState({ isPlaying: true });
+
 			}
 
 			pause() {
@@ -38,14 +42,28 @@ class Album extends Component {
 				const isSameSong = this.state.currentSong === song;
 				if (this.state.isPlaying && isSameSong) {
 					this.pause();
+					return <i class="icon ion-md-pause"></i>;
 				} else {
 					if (!isSameSong) {
 						this.setSong(song);
+						return <i class="icon ion-md-play"></i>
 							}
 						this.play();
 					}
 				}
 
+				renderIcons(song, index) {
+					const isSameSong = this.state.currentSong === song;
+					if (this.state.isPlaying && isSameSong) {
+						return <span className="icon ion-md-pause"></span>
+					} else if (!this.state.isPlaying && isSameSong) {
+						return <span className="icon ion-md-play"></span>
+					} else if (this.state.isHovered === index + 1) {
+						return <span className="icon ion-md-play"></span>
+					} else {
+						return <span className="song-num"> {index + 1} </span>
+					}
+}
 		render() {
 		return (
 			<section className="album">
@@ -69,9 +87,13 @@ class Album extends Component {
 					</colgroup>
 					<tbody>
 					{ this.state.album.songs.map( (song, index) =>
-						<tr className="song" key={ index } onClick={() => this.handleSongClick(song)}>
-							<td> {index + 1} </td>
-							<td>{ this.state.album.songs[index].title }</td>
+						<tr className="song" key={ index }
+						onClick={(e) => this.handleSongClick(song)}
+						onMouseEnter={(e) => this.setState({ isHovered: index + 1})}
+						onMouseLeave={(e) => this.setState({ isHovered: false})}
+						>
+							<td>{this.renderIcons(song, index)}</td>
+							<td>{ this.state.album.songs[index].title}</td>
 							<td>{ this.state.album.songs[index].duration }</td>
 						</tr>
 					)}
@@ -83,3 +105,6 @@ class Album extends Component {
 	}
 
 export default Album;
+
+//git feature branch for assignment already created
+//complete assignment-audio-playback
