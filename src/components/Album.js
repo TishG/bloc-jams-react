@@ -43,11 +43,9 @@ class Album extends Component {
 				const isSameSong = this.state.currentSong === song;
 				if (this.state.isPlaying && isSameSong) {
 					this.pause();
-					return <i class="icon ion-md-pause"></i>;
 				} else {
 					if (!isSameSong) {
 						this.setSong(song);
-						return <i class="icon ion-md-play"></i>
 							}
 						this.play();
 					}
