@@ -13,6 +13,8 @@ class Album extends Component {
 			this.state = {
 				album: album,
 				currentSong: album.songs[null],
+				currentTime: 0,
+				duration: album.songs[0].duration,
 				isPlaying: false,
 				isHovered: false
 			};
@@ -23,6 +25,28 @@ class Album extends Component {
 
 		//pause logo - <i class="icon ion-md-pause"></i>
 		//play logo - <i class="icon ion-md-play"></i>
+
+//called by React when a component has been added to the DOM, and it's useful to add API calls and event handlers to this method
+		componentDidMount() {
+			this.eventListeners = {
+        timeupdate: e => {
+          this.setState({ currentTime: this.audioElement.currentTime });
+        },
+        durationchange: e => {
+          this.setState({ duration: this.audioElement.duration });
+        }
+      };
+      this.audioElement.addEventListener('timeupdate', this.eventListeners.timeupdate);
+      this.audioElement.addEventListener('durationchange', this.eventListeners.durationchange);
+		}
+
+		componentWillUnmount() {
+			this.audioElement.src = null;
+      this.audioElement.removeEventListener('timeupdate', this.eventListeners.timeupdate);
+      this.audioElement.removeEventListener('durationchange', this.eventListeners.durationchange);
+		}
+
+
 			play() {
 				this.audioElement.play();
 				this.setState({ isPlaying: true });
@@ -79,6 +103,16 @@ class Album extends Component {
 					this.play()
 				}
 
+				handleTimeChange(e) {
+					//e for event
+					//calc newTime by multiplying this.audioElement.duration by the value of the range input, e.target.value.
+					const newTime = this.audioElement.duration * e.target.value;
+					// Set the currentTime property of this.audioElement to the new time.
+					 this.audioElement.currentTime = newTime;
+					//Update this.state.currentTime to the new time.
+					 this.setState({ currentTime: newTime });
+				}
+
 				renderIcons(song, index) {
 					const isSameSong = this.state.currentSong === song;
 					if (this.state.isPlaying && isSameSong) {
@@ -130,9 +164,12 @@ class Album extends Component {
 				<PlayerBar
 				isPlaying={this.state.isPlaying}
 				currentSong={this.state.currentSong}
+				currentTime={ this.audioElement.currentTime}
+				duration={this.audioElement.duration}
 				handleSongClick={() => this.handleSongClick(this.state.currentSong)}
 				handlePrevClick={() => this.handlePrevClick()}
 				handleNextClick={() => this.handleNextClick()}
+				handleTimeChange={(e) => this.handleTimeChange(e)}
 				/>
 			</section>
 			);
