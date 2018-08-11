@@ -15,6 +15,7 @@ class Album extends Component {
 				currentSong: album.songs[null],
 				currentTime: 0,
 				duration: album.songs[0].duration,
+				currentVol: .5,
 				isPlaying: false,
 				isHovered: false
 			};
@@ -30,18 +31,23 @@ class Album extends Component {
 				},
 				durationchange: e => {
 					this.setState({ duration: this.audioElement.duration });
+				},
+				volchange: e => {
+					this.setState({ currentVol: this.audioElement.currentVol });
 				}
 			};
 			this.audioElement.addEventListener("timeupdate", this.eventListeners.timeupdate);
 			this.audioElement.addEventListener("durationchange", this.eventListeners.durationchange);
+			this.audioElement.addEventListener("volchange", this.eventListeners.volchange);
 		}
 
 		componentWillUnmount() {
 			//stops audio playback
 			this.audioElement.src = null;
-			//terminate the timeupdate and durationchange event listeners.
-			this.audioElement.removeEventListener("timeupdate", this.eventListeners.timeupdate)
+			//terminate the timeupdate, durationchange, and volchange event listeners.
+			this.audioElement.removeEventListener("timeupdate", this.eventListeners.timeupdate);
 			this.audioElement.removeEventListener("durationchange", this.eventListeners.durationchange);
+			this.audioElement.removeEventListener("volchange", this.eventListeners.volchange);
 		}
 
 			play() {
@@ -107,6 +113,34 @@ class Album extends Component {
 					this.setState({ currentTime: newTime });
 				}
 
+				formatTime(time) {
+					//incase passed an invalid or non-numeric value
+						if (isNaN(time)) {
+							return " -:-- ";
+						}
+						//Math.floor() returns the largest whole number, less than or equal to a number.
+						//convert seconds to integers
+						const seconds = Math.floor(time);
+						const minutes = Math.floor(seconds / 60);
+						const remainingSeconds = seconds % 60;
+						let timer = minutes + ":";
+						//if the seconds that remain are less than 10, then timer = timer + 0
+						if (remainingSeconds < 10) {
+							timer += "0";
+						}
+						timer += remainingSeconds;
+						return timer;
+				}
+
+				handleVolChange(e) {
+					//set new volume to value attributes value in volume control section of player bar
+					const newVol = e.target.value;
+					//set the volume property of this.audioElement to the new volume
+					this.audioElement.volume = newVol;
+					//update state to new volume
+					this.setState({ currentVol: newVol });
+				}
+
 				renderIcons(song, index) {
 					const isSameSong = this.state.currentSong === song;
 					if (this.state.isPlaying && isSameSong) {
@@ -159,11 +193,14 @@ class Album extends Component {
 				isPlaying={this.state.isPlaying}
 				currentSong={this.state.currentSong}
 				currentTime={this.audioElement.currentTime}
+				formatTime={(e) => this.formatTime(e)}
 				duration={this.audioElement.duration}
+				currentVol={this.audioElement.volume}
 				handleSongClick={() => this.handleSongClick(this.state.currentSong)}
 				handlePrevClick={() => this.handlePrevClick()}
 				handleNextClick={() => this.handleNextClick()}
 				handleTimeChange={(e) => this.handleTimeChange(e)}
+				handleVolChange={(e) => this.handleVolChange(e)}
 				/>
 			</section>
 			);
@@ -171,6 +208,3 @@ class Album extends Component {
 	}
 
 export default Album;
-
-//git feature branch for assignment already created
-//complete assignment-audio-playback
