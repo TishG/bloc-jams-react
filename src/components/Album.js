@@ -184,7 +184,7 @@ class Album extends Component {
 						>
 							<td>{this.renderIcons(song, index)}</td>
 							<td>{ this.state.album.songs[index].title}</td>
-							<td>{ this.state.album.songs[index].duration }</td>
+							<td>{ this.formatTime(this.state.album.songs[index].duration) }</td>
 						</tr>
 					)}
 					</tbody>
