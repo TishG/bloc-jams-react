@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from './PlayerBar';
+import { Link } from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+	Container,
+	Row,
+  Col
+} from 'reactstrap';
+import './Album.css';
 
 class Album extends Component {
 	constructor(props) {
@@ -53,7 +67,6 @@ class Album extends Component {
 			play() {
 				this.audioElement.play();
 				this.setState({ isPlaying: true });
-
 			}
 
 			pause() {
@@ -144,7 +157,7 @@ class Album extends Component {
 				renderIcons(song, index) {
 					const isSameSong = this.state.currentSong === song;
 					if (this.state.isPlaying && isSameSong) {
-						return <span className="icon ion-md-pause"></span>
+						return <span className="icon ion-md-pause" style={{color:"blue"}}></span>
 					} else if (!this.state.isPlaying && isSameSong) {
 						return <span className="icon ion-md-play"></span>
 					} else if (this.state.isHovered === index + 1) {
@@ -157,11 +170,26 @@ class Album extends Component {
 		render() {
 		return (
 			<section className="album">
+			<Navbar light expand="sm" style={{ backgroundColor: "maroon"}}>
+				<NavbarBrand><Link to="/" className="nav-brand"><span className="icon ion-md-microphone"></span>BlocJams</Link></NavbarBrand>
+				<NavbarToggler onClick={this.toggle} />
+				<Collapse isOpen={this.state.isOpen} navbar>
+				<Nav className="ml-auto" navbar>
+				 <NavItem>
+					<NavLink><Link to="/" className="brand">Landing</Link></NavLink>
+				 </NavItem>
+				 <NavItem>
+					<NavLink><Link to="/library">Library</Link></NavLink>
+				 </NavItem>
+				 </Nav>
+			</Collapse>
+			</Navbar>
 				<section id="album-info">
 					<img
 					id="album-cover-art"
 					src={ this.state.album.albumCover}
 					alt={ this.state.album.title}
+          className="album-img"
 					/>
 					<div className="album-details">
 						<h1 id="album-title">{ this.state.album.title }</h1>
@@ -169,6 +197,9 @@ class Album extends Component {
 						<div id="release-info"> { this.state.album.releaseInfo }</div>
 					</div>
 				</section>
+        <Container>
+          <Row>
+            <Col className="music-selection-table" sm="12" md="4">
 				<table id="song-list">
 					<colgroup>
 						<col id="song-number-column" />
@@ -189,6 +220,9 @@ class Album extends Component {
 					)}
 					</tbody>
 				</table>
+            </Col>
+          </Row>
+        </Container>
 				<PlayerBar
 				isPlaying={this.state.isPlaying}
 				currentSong={this.state.currentSong}
