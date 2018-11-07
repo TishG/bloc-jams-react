@@ -33,7 +33,7 @@ class Landing extends Component {
 	<section className="landing">
 	<header>
 		<Navbar color="faded" light expand="sm">
-			<NavbarBrand><Link to="/" className="nav-brand"><span className="icon ion-md-microphone"></span>BlocJams</Link></NavbarBrand>
+			<NavbarBrand><Link to="/" className="nav-brand"><span className="icon ion-md-microphone"></span>WebJams</Link></NavbarBrand>
 			<NavbarToggler onClick={this.toggle} />
 			<Collapse isOpen={this.state.isOpen} navbar>
 			<Nav className="ml-auto" navbar>
@@ -94,7 +94,7 @@ class Landing extends Component {
         </Row>
         <Row>
           <Col>
-            <small>&copy; BlocJams 2018</small>
+            <small>&copy; WebJams 2018</small>
           </Col>
         </Row>
       </footer>
