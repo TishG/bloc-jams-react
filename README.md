@@ -1,4 +1,4 @@
-# bloc-jams-react
+# web-jams-react
 A music player app built with react
 
 
