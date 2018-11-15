@@ -8,15 +8,15 @@ self.__precacheManifest = [
     "url": "/web-jams-react/static/js/runtime~main.ff758b3f.js"
   },
   {
-    "revision": "e4e1cd5c456bdde19ddb",
-    "url": "/web-jams-react/static/js/main.e4e1cd5c.chunk.js"
+    "revision": "400c1eb59f9488d30f7f",
+    "url": "/web-jams-react/static/js/main.400c1eb5.chunk.js"
   },
   {
     "revision": "8aafdaeaf0f98d887a7e",
     "url": "/web-jams-react/static/js/1.8aafdaea.chunk.js"
   },
   {
-    "revision": "e4e1cd5c456bdde19ddb",
+    "revision": "400c1eb59f9488d30f7f",
     "url": "/web-jams-react/static/css/main.5ab180c1.chunk.css"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/web-jams-react/static/css/1.c1700c80.chunk.css"
   },
   {
-    "revision": "dce798a0d1eb474542772a40dcc4e985",
+    "revision": "466c41f9ce3fc72df08aa8a309e51ada",
     "url": "/web-jams-react/index.html"
   }
 ];
