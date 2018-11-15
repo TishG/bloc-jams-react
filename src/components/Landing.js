@@ -86,9 +86,13 @@ class Landing extends Component {
       <footer>
         <Row>
         <Col>
+        // eslint-disable-next-line 
         <li><a href="">About</a></li>
+        // eslint-disable-next-line
         <li><a href="">Contact Us</a></li>
+        // eslint-disable-next-line
         <li><a href="">Request New Music</a></li>
+        // eslint-disable-next-line
         <li><a href="">Employment</a></li>
         </Col>
         </Row>

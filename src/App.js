@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Landing from './components/Landing';
 import Library from './components/Library';
 import Album from './components/Album';
@@ -9,15 +9,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
       <main>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <div className="App">
           <Route exact path="/" component={Landing} />
           <Route path="/library" component={Library} />
           <Route path="/album/:slug" component={Album} />
-        </BrowserRouter>
+        </div>
       </main>
-      </div>
+
     );
   }
 }
