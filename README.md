@@ -30,6 +30,3 @@ View on your local device:
 6. If you don't already have node.js, [install here](https://nodejs.org/en/) as it is needed for steps 6 and 7.
 7. type "npm start" in the command line 
 8. Open up google chrome and type into the url, "localhost:3000" (or whichever port your host is)
-
-## Follow-up
-I would like to add more albums in the future.
