@@ -27,8 +27,9 @@ View on your local device:
 3. Open Git Bash, you can [download Git Bash if you don't already have it](https://git-scm.com/downloads)
 4. Change the current working directory to the location where you want the cloned directory to be made.
 5. In the command line, type "git clone", and then paste the copied URL
-6. type "npm start" in the command line
-7. Open up google chrome and type into the url, "localhost:3000" (or whichever port your host is)
+6. If you don't already have node.js, [install here](https://nodejs.org/en/) as it is needed for steps 6 and 7.
+7. type "npm start" in the command line 
+8. Open up google chrome and type into the url, "localhost:3000" (or whichever port your host is)
 
 ## Follow-up
 I would like to add more albums in the future.
