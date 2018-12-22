@@ -35,4 +35,3 @@ View on your local device:
 * [Git Bash](https://git-scm.com/downloads)
 * [Google Chrome](https://www.google.com/chrome/) 
 
-[View Bloccit website](https://tishg-bloccit-b.herokuapp.com/)
