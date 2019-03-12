@@ -121,3 +121,9 @@ footer li {
     color: gray;
     margin-top: 5em;
 }
+
+.footer-buttons {
+  color: white;
+  background-color: black;
+  border: none;
+}

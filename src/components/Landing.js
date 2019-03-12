@@ -86,14 +86,14 @@ class Landing extends Component {
       <footer>
         <Row>
         <Col>
-        // eslint-disable-next-line 
-        <li><a href="">About</a></li>
-        // eslint-disable-next-line
-        <li><a href="">Contact Us</a></li>
-        // eslint-disable-next-line
-        <li><a href="">Request New Music</a></li>
-        // eslint-disable-next-line
-        <li><a href="">Employment</a></li>
+
+        <li><button class="footer-buttons">About</button></li>
+
+        <li><button class="footer-buttons">Contact Us</button></li>
+
+        <li><button class="footer-buttons">Request New Music</button></li>
+
+        <li><button class="footer-buttons">Employment</button></li>
         </Col>
         </Row>
         <Row>
