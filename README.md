@@ -11,7 +11,6 @@ This is an application where users can listen to music from albums.
 
 ## How
 This app was built using:
-* HTML
 * CSS
 * React
 * Reactstrap
